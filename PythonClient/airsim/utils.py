@@ -59,23 +59,25 @@ def to_eularian_angles(q):
     w = q.w_val
     ysqr = y * y
 
-    # roll (x-axis rotation)
-    t0 = +2.0 * (w*x + y*z)
-    t1 = +1.0 - 2.0*(x*x + ysqr)
-    roll = math.atan2(t0, t1)
-
     # pitch (y-axis rotation)
+    test = x*y + z*w
     t2 = +2.0 * (w*y - z*x)
-    if (t2 > 1.0):
-        t2 = 1
-    if (t2 < -1.0):
-        t2 = -1.0
-    pitch = math.asin(t2)
-
-    # yaw (z-axis rotation)
-    t3 = +2.0 * (w*z + x*y)
-    t4 = +1.0 - 2.0 * (ysqr + z*z)
-    yaw = math.atan2(t3, t4)
+    #near -90 or 90 need to be handled different
+    if (abs(t2) > 0.9999):
+        pitch = math.pi/2 * t2
+        yaw = 2 * math.atan2(z,w) 
+        roll = 0
+    else:
+        #not sigularity
+        pitch = math.asin(t2)
+        # roll (x-axis rotation)
+        t0 = +2.0 * (w*x + y*z)
+        t1 = +1.0 - 2.0*(x*x + ysqr)
+        roll = math.atan2(t0, t1)
+        # yaw (z-axis rotation)
+        t3 = +2.0 * (w*z + x*y)
+        t4 = +1.0 - 2.0 * (ysqr + z*z)
+        yaw = math.atan2(t3, t4)
 
     return (pitch, roll, yaw)
 
