@@ -61,8 +61,8 @@ def to_eularian_angles(q):
 
     # pitch (y-axis rotation)
     test = +2.0 * (w*y - z*x)
-    #near -90 or 90 need to be handled different
-    if (abs(test) > 0.99999):
+    #pitch near -90 or 90 need to be handled differently
+    if (abs(test) > 0.999999):
         pitch = math.pi/2 * test
         yaw = 2 * math.atan2(z,w) 
         roll = 0
@@ -74,9 +74,9 @@ def to_eularian_angles(q):
         t1 = +1.0 - 2.0*(x*x + ysqr)
         roll = math.atan2(t0, t1)
         # yaw (z-axis rotation)
-        t3 = +2.0 * (w*z + x*y)
-        t4 = +1.0 - 2.0 * (ysqr + z*z)
-        yaw = math.atan2(t3, t4)
+        t2 = +2.0 * (w*z + x*y)
+        t3 = +1.0 - 2.0 * (ysqr + z*z)
+        yaw = math.atan2(t2, t3)
 
     return (pitch, roll, yaw)
 
