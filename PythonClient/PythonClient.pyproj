@@ -5,16 +5,19 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>e2049e20-b6dd-474e-8bca-1c8dc54725aa</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>computer_vision\cv_capture.py</StartupFile>
-    <SearchPath>
-    </SearchPath>
+    <StartupFile>TMM\vision_pawn_rotations.py</StartupFile>
+    <SearchPath>..\PythonClient</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>PythonClient</Name>
     <RootNamespace>PythonClient</RootNamespace>
-    <InterpreterId>Global|ContinuumAnalytics|Anaconda36-64</InterpreterId>
+    <InterpreterId>MSBuild|AirsimVE|$(MSBuildProjectFullPath)</InterpreterId>
     <InterpreterVersion>
     </InterpreterVersion>
+    <TestFramework>Pytest</TestFramework>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -102,12 +105,18 @@
     <Compile Include="setup.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TMM\AngleTests.py" />
+    <Compile Include="TMM\test_to_euler.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TMM\vision_pawn_rotations.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="airsim\" />
     <Folder Include="car\" />
     <Folder Include="computer_vision\" />
     <Folder Include="multirotor\" />
+    <Folder Include="TMM\" />
     <Folder Include="ros\" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +127,17 @@
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|ContinuumAnalytics|Anaconda36-64" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="..\..\ColosseumVE\AirsimVE\">
+      <Id>AirsimVE</Id>
+      <Version>3.11</Version>
+      <Description>AirsimVE (Python 3.11 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
