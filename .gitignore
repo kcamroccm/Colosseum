@@ -6,6 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.sln
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -241,6 +242,9 @@ FakesAssemblies/
 
 # compiled python files
 *.pyc
+
+# python VE
+/AirsimVE
 
 # LightSwitch generated files
 GeneratedArtifacts/
